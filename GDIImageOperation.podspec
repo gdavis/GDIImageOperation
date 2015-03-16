@@ -3,6 +3,7 @@ Pod::Spec.new do |s|
   s.version          = "0.1.0"
   s.summary          = "GDIImageOperation is an NSOperation subclass that simplifies image loading."
   s.description      = <<-DESC
+                       GDIImageOperation is an NSOperation subclass that simplifies image loading.
                        More information coming soonish.
                        DESC
   s.homepage         = "https://github.com/gdavis/GDIImageOperation"
