@@ -1,6 +1,6 @@
 # GDIImageOperation
 
-[![CI Status](http://img.shields.io/travis/Grant Davis/GDIImageOperation.svg?style=flat)](https://travis-ci.org/Grant Davis/GDIImageOperation)
+[![CI Status](http://img.shields.io/travis/gdavis/GDIImageOperation.svg?style=flat)](https://travis-ci.org/gdavis/GDIImageOperation)
 [![Version](https://img.shields.io/cocoapods/v/GDIImageOperation.svg?style=flat)](http://cocoadocs.org/docsets/GDIImageOperation)
 [![License](https://img.shields.io/cocoapods/l/GDIImageOperation.svg?style=flat)](http://cocoadocs.org/docsets/GDIImageOperation)
 [![Platform](https://img.shields.io/cocoapods/p/GDIImageOperation.svg?style=flat)](http://cocoadocs.org/docsets/GDIImageOperation)
