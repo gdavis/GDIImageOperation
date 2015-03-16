@@ -1,0 +1,831 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C85E1E5DDB56B392204AB6F /* Pods-GDIImageOperation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B663E02A3598DFA73FA92F /* Pods-GDIImageOperation-dummy.m */; };
+		2504F1455DFCFF6C9818E35B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7090D0857CAD9BF23DEFB283 /* Foundation.framework */; };
+		3294AD9CE618F71ED7EC8B08 /* Pods-Tests-GDIImageOperation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6239E2B73F761DA8AABB255A /* Pods-Tests-GDIImageOperation-dummy.m */; };
+		3F8ACF05B4A8C006EFBAEB4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7090D0857CAD9BF23DEFB283 /* Foundation.framework */; };
+		43FF2DC6433F103BA91779DE /* Pods-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD43AB3BCCB5DEF9539A62E /* Pods-Tests-dummy.m */; };
+		6139AE96652C3F89BA274984 /* Pods-GDIImageOperation-GDIImageOperation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E641B064BD1B67EF3DE9065 /* Pods-GDIImageOperation-GDIImageOperation-dummy.m */; };
+		77CE04761AB74834006A6A25 /* GDIImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE046D1AB74834006A6A25 /* GDIImageOperation.m */; };
+		77CE04771AB74834006A6A25 /* GDIOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE046F1AB74834006A6A25 /* GDIOperation.m */; };
+		77CE04781AB74834006A6A25 /* NSFileManager+GDISizeCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE04711AB74834006A6A25 /* NSFileManager+GDISizeCalculation.m */; };
+		77CE04791AB74834006A6A25 /* UIApplication+GDINetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE04731AB74834006A6A25 /* UIApplication+GDINetworkActivity.m */; };
+		77CE047A1AB74834006A6A25 /* UIImageView+GDIImageLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CE04751AB74834006A6A25 /* UIImageView+GDIImageLoading.m */; };
+		84BA3D9F084378950BE87BA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7090D0857CAD9BF23DEFB283 /* Foundation.framework */; };
+		AA9D58575BE0F9ACFDD0F8E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7090D0857CAD9BF23DEFB283 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2DA0927B1713A56DD910681E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637635107425DCB8C6FB9F30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAC545FE4A910456C20A4347;
+			remoteInfo = "Pods-GDIImageOperation-GDIImageOperation";
+		};
+		896261E5C3D71EE59591E15A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637635107425DCB8C6FB9F30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BB401E3A3B2BC9DDE5F0821;
+			remoteInfo = "Pods-Tests-GDIImageOperation";
+		};
+		B0789AD1E5B0625398166CE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637635107425DCB8C6FB9F30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2B935CB962E62C85E6F1486;
+			remoteInfo = GDIImageOperation;
+		};
+		D19600D1FD94F3A4D61124D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637635107425DCB8C6FB9F30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2B935CB962E62C85E6F1486;
+			remoteInfo = GDIImageOperation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F31EB050C1D894A9CC4D051 /* Pods-Tests-GDIImageOperation-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-GDIImageOperation-Private.xcconfig"; path = "../Pods-Tests-GDIImageOperation/Pods-Tests-GDIImageOperation-Private.xcconfig"; sourceTree = "<group>"; };
+		29BCC4E553133B90CFBB8F1E /* Pods-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4E641B064BD1B67EF3DE9065 /* Pods-GDIImageOperation-GDIImageOperation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GDIImageOperation-GDIImageOperation-dummy.m"; sourceTree = "<group>"; };
+		5CFEDF56CF77BDF838CF8A84 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		6239E2B73F761DA8AABB255A /* Pods-Tests-GDIImageOperation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-Tests-GDIImageOperation-dummy.m"; path = "../Pods-Tests-GDIImageOperation/Pods-Tests-GDIImageOperation-dummy.m"; sourceTree = "<group>"; };
+		7090D0857CAD9BF23DEFB283 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		77CE046C1AB74834006A6A25 /* GDIImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDIImageOperation.h; path = Pod/Classes/GDIImageOperation.h; sourceTree = "<group>"; };
+		77CE046D1AB74834006A6A25 /* GDIImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDIImageOperation.m; path = Pod/Classes/GDIImageOperation.m; sourceTree = "<group>"; };
+		77CE046E1AB74834006A6A25 /* GDIOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDIOperation.h; path = Pod/Classes/GDIOperation.h; sourceTree = "<group>"; };
+		77CE046F1AB74834006A6A25 /* GDIOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDIOperation.m; path = Pod/Classes/GDIOperation.m; sourceTree = "<group>"; };
+		77CE04701AB74834006A6A25 /* NSFileManager+GDISizeCalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+GDISizeCalculation.h"; path = "Pod/Classes/NSFileManager+GDISizeCalculation.h"; sourceTree = "<group>"; };
+		77CE04711AB74834006A6A25 /* NSFileManager+GDISizeCalculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+GDISizeCalculation.m"; path = "Pod/Classes/NSFileManager+GDISizeCalculation.m"; sourceTree = "<group>"; };
+		77CE04721AB74834006A6A25 /* UIApplication+GDINetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+GDINetworkActivity.h"; path = "Pod/Classes/UIApplication+GDINetworkActivity.h"; sourceTree = "<group>"; };
+		77CE04731AB74834006A6A25 /* UIApplication+GDINetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+GDINetworkActivity.m"; path = "Pod/Classes/UIApplication+GDINetworkActivity.m"; sourceTree = "<group>"; };
+		77CE04741AB74834006A6A25 /* UIImageView+GDIImageLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+GDIImageLoading.h"; path = "Pod/Classes/UIImageView+GDIImageLoading.h"; sourceTree = "<group>"; };
+		77CE04751AB74834006A6A25 /* UIImageView+GDIImageLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+GDIImageLoading.m"; path = "Pod/Classes/UIImageView+GDIImageLoading.m"; sourceTree = "<group>"; };
+		79B571DB5DECF6E517E15CB7 /* Pods-Tests-GDIImageOperation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-Tests-GDIImageOperation-prefix.pch"; path = "../Pods-Tests-GDIImageOperation/Pods-Tests-GDIImageOperation-prefix.pch"; sourceTree = "<group>"; };
+		7D6DDAD548912F7F1450A49B /* libPods-Tests-GDIImageOperation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-GDIImageOperation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6957435BEE8253ADABA3BB /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8385D286596332EF38798BCE /* Pods-GDIImageOperation-GDIImageOperation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GDIImageOperation-GDIImageOperation.xcconfig"; sourceTree = "<group>"; };
+		92BFFB0DFDF29AE448E60617 /* Pods-GDIImageOperation-GDIImageOperation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GDIImageOperation-GDIImageOperation-prefix.pch"; sourceTree = "<group>"; };
+		94FA6182D495B51BE7BCE7EB /* GDIImageOperation.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GDIImageOperation.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		951CC4D097A7177920A7AC0B /* Pods-GDIImageOperation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GDIImageOperation.debug.xcconfig"; sourceTree = "<group>"; };
+		A5302C1491680C86468B971A /* Pods-GDIImageOperation-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GDIImageOperation-environment.h"; sourceTree = "<group>"; };
+		AFD43AB3BCCB5DEF9539A62E /* Pods-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tests-dummy.m"; sourceTree = "<group>"; };
+		BBF53ECF176AF0DA12B24A7F /* Pods-GDIImageOperation-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GDIImageOperation-acknowledgements.plist"; sourceTree = "<group>"; };
+		BF54BF70BEDA4D029FB0DED2 /* Pods-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tests-resources.sh"; sourceTree = "<group>"; };
+		C5BD524E3DE438967415CEDF /* Pods-Tests-GDIImageOperation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-GDIImageOperation.xcconfig"; path = "../Pods-Tests-GDIImageOperation/Pods-Tests-GDIImageOperation.xcconfig"; sourceTree = "<group>"; };
+		CFC0CC46571EF14416DD2D2D /* Pods-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D3B663E02A3598DFA73FA92F /* Pods-GDIImageOperation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GDIImageOperation-dummy.m"; sourceTree = "<group>"; };
+		D696CBC7D90C671F944825E3 /* libPods-GDIImageOperation-GDIImageOperation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GDIImageOperation-GDIImageOperation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA0425700D570CFA1D72973C /* Pods-GDIImageOperation-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GDIImageOperation-resources.sh"; sourceTree = "<group>"; };
+		DDAAE48998A3972B48D470BE /* Pods-GDIImageOperation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GDIImageOperation.release.xcconfig"; sourceTree = "<group>"; };
+		E063FB3DB035C39AC9252D75 /* Pods-GDIImageOperation-GDIImageOperation-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GDIImageOperation-GDIImageOperation-Private.xcconfig"; sourceTree = "<group>"; };
+		E35B538F008CBA05B5F01540 /* Pods-GDIImageOperation-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GDIImageOperation-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E4CDB6305896FDC91D8E1E1D /* libPods-GDIImageOperation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GDIImageOperation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB5391FCF0915F7AD9FEB5D2 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F157F35800263516D11F7189 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		F21F0DD46872EBF58168CB2C /* Pods-Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tests-environment.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		118278630BEFE227789F1962 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8ACF05B4A8C006EFBAEB4C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A192D54BD7923A01FF8AE6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2504F1455DFCFF6C9818E35B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8205A48D72B01D6254B09545 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84BA3D9F084378950BE87BA2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD01A6A91904568ABE744C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA9D58575BE0F9ACFDD0F8E7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2625B4B108353012725FABD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00A5B420094993DF0A4E08FB /* Pods-GDIImageOperation */ = {
+			isa = PBXGroup;
+			children = (
+				E35B538F008CBA05B5F01540 /* Pods-GDIImageOperation-acknowledgements.markdown */,
+				BBF53ECF176AF0DA12B24A7F /* Pods-GDIImageOperation-acknowledgements.plist */,
+				D3B663E02A3598DFA73FA92F /* Pods-GDIImageOperation-dummy.m */,
+				A5302C1491680C86468B971A /* Pods-GDIImageOperation-environment.h */,
+				DA0425700D570CFA1D72973C /* Pods-GDIImageOperation-resources.sh */,
+				951CC4D097A7177920A7AC0B /* Pods-GDIImageOperation.debug.xcconfig */,
+				DDAAE48998A3972B48D470BE /* Pods-GDIImageOperation.release.xcconfig */,
+			);
+			name = "Pods-GDIImageOperation";
+			path = "Target Support Files/Pods-GDIImageOperation";
+			sourceTree = "<group>";
+		};
+		2C3B04479CD80611D848753E = {
+			isa = PBXGroup;
+			children = (
+				7E6957435BEE8253ADABA3BB /* Podfile */,
+				CADA879A3A091D3F13DECD79 /* Development Pods */,
+				769BF3A6CEBE1D082A40B02E /* Frameworks */,
+				A547BB745002F9E9D3236A2E /* Products */,
+				9776DBE09D7CC0A73A80E167 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		47452D0E82F7407B189B78AC /* Pods-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				29BCC4E553133B90CFBB8F1E /* Pods-Tests-acknowledgements.markdown */,
+				CFC0CC46571EF14416DD2D2D /* Pods-Tests-acknowledgements.plist */,
+				AFD43AB3BCCB5DEF9539A62E /* Pods-Tests-dummy.m */,
+				F21F0DD46872EBF58168CB2C /* Pods-Tests-environment.h */,
+				BF54BF70BEDA4D029FB0DED2 /* Pods-Tests-resources.sh */,
+				5CFEDF56CF77BDF838CF8A84 /* Pods-Tests.debug.xcconfig */,
+				F157F35800263516D11F7189 /* Pods-Tests.release.xcconfig */,
+			);
+			name = "Pods-Tests";
+			path = "Target Support Files/Pods-Tests";
+			sourceTree = "<group>";
+		};
+		60871CDEC8355C017145B209 /* GDIImageOperation */ = {
+			isa = PBXGroup;
+			children = (
+				77CE046C1AB74834006A6A25 /* GDIImageOperation.h */,
+				77CE046D1AB74834006A6A25 /* GDIImageOperation.m */,
+				77CE046E1AB74834006A6A25 /* GDIOperation.h */,
+				77CE046F1AB74834006A6A25 /* GDIOperation.m */,
+				77CE04701AB74834006A6A25 /* NSFileManager+GDISizeCalculation.h */,
+				77CE04711AB74834006A6A25 /* NSFileManager+GDISizeCalculation.m */,
+				77CE04721AB74834006A6A25 /* UIApplication+GDINetworkActivity.h */,
+				77CE04731AB74834006A6A25 /* UIApplication+GDINetworkActivity.m */,
+				77CE04741AB74834006A6A25 /* UIImageView+GDIImageLoading.h */,
+				77CE04751AB74834006A6A25 /* UIImageView+GDIImageLoading.m */,
+				9EB1592E6FF83CE2D9E8C1F4 /* Support Files */,
+			);
+			name = GDIImageOperation;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		769BF3A6CEBE1D082A40B02E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E42F83D6CCCA809F1E02BC17 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9776DBE09D7CC0A73A80E167 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				00A5B420094993DF0A4E08FB /* Pods-GDIImageOperation */,
+				47452D0E82F7407B189B78AC /* Pods-Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		9EB1592E6FF83CE2D9E8C1F4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8385D286596332EF38798BCE /* Pods-GDIImageOperation-GDIImageOperation.xcconfig */,
+				E063FB3DB035C39AC9252D75 /* Pods-GDIImageOperation-GDIImageOperation-Private.xcconfig */,
+				4E641B064BD1B67EF3DE9065 /* Pods-GDIImageOperation-GDIImageOperation-dummy.m */,
+				92BFFB0DFDF29AE448E60617 /* Pods-GDIImageOperation-GDIImageOperation-prefix.pch */,
+				C5BD524E3DE438967415CEDF /* Pods-Tests-GDIImageOperation.xcconfig */,
+				0F31EB050C1D894A9CC4D051 /* Pods-Tests-GDIImageOperation-Private.xcconfig */,
+				6239E2B73F761DA8AABB255A /* Pods-Tests-GDIImageOperation-dummy.m */,
+				79B571DB5DECF6E517E15CB7 /* Pods-Tests-GDIImageOperation-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Pods-GDIImageOperation-GDIImageOperation";
+			sourceTree = "<group>";
+		};
+		A547BB745002F9E9D3236A2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94FA6182D495B51BE7BCE7EB /* GDIImageOperation.bundle */,
+				E4CDB6305896FDC91D8E1E1D /* libPods-GDIImageOperation.a */,
+				D696CBC7D90C671F944825E3 /* libPods-GDIImageOperation-GDIImageOperation.a */,
+				EB5391FCF0915F7AD9FEB5D2 /* libPods-Tests.a */,
+				7D6DDAD548912F7F1450A49B /* libPods-Tests-GDIImageOperation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CADA879A3A091D3F13DECD79 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				60871CDEC8355C017145B209 /* GDIImageOperation */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		E42F83D6CCCA809F1E02BC17 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7090D0857CAD9BF23DEFB283 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3481E1EE6174913B974F3C39 /* Pods-GDIImageOperation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08B62E703C1B4D798C5A51C1 /* Build configuration list for PBXNativeTarget "Pods-GDIImageOperation" */;
+			buildPhases = (
+				78C2034CA3500897D2B59991 /* Sources */,
+				8205A48D72B01D6254B09545 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2223B0222E9004651C882213 /* PBXTargetDependency */,
+			);
+			name = "Pods-GDIImageOperation";
+			productName = "Pods-GDIImageOperation";
+			productReference = E4CDB6305896FDC91D8E1E1D /* libPods-GDIImageOperation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6BB401E3A3B2BC9DDE5F0821 /* Pods-Tests-GDIImageOperation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2AEB6B75B141FACA95EBD60B /* Build configuration list for PBXNativeTarget "Pods-Tests-GDIImageOperation" */;
+			buildPhases = (
+				5751A360C0156D4F44422327 /* Sources */,
+				BFD01A6A91904568ABE744C7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8E125C178285DCD93C3540F /* PBXTargetDependency */,
+			);
+			name = "Pods-Tests-GDIImageOperation";
+			productName = "Pods-Tests-GDIImageOperation";
+			productReference = 7D6DDAD548912F7F1450A49B /* libPods-Tests-GDIImageOperation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D2B935CB962E62C85E6F1486 /* GDIImageOperation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CEBD5FF480E4B09D78BA12B /* Build configuration list for PBXNativeTarget "GDIImageOperation" */;
+			buildPhases = (
+				2403DDF7EB220052D1346C28 /* Sources */,
+				D2625B4B108353012725FABD /* Frameworks */,
+				4A0811FBC7929FD95FCBE8C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GDIImageOperation;
+			productName = GDIImageOperation;
+			productReference = 94FA6182D495B51BE7BCE7EB /* GDIImageOperation.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		EAC545FE4A910456C20A4347 /* Pods-GDIImageOperation-GDIImageOperation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5996C098E64A9C635EBCEDD0 /* Build configuration list for PBXNativeTarget "Pods-GDIImageOperation-GDIImageOperation" */;
+			buildPhases = (
+				ADEFBF8FF9DB2D4FD814B703 /* Sources */,
+				6A192D54BD7923A01FF8AE6A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5272790646EC87B88086EFB1 /* PBXTargetDependency */,
+			);
+			name = "Pods-GDIImageOperation-GDIImageOperation";
+			productName = "Pods-GDIImageOperation-GDIImageOperation";
+			productReference = D696CBC7D90C671F944825E3 /* libPods-GDIImageOperation-GDIImageOperation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FF494AD931E230DE6F02D3B8 /* Pods-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E57AA094CA55012EF52EE14 /* Build configuration list for PBXNativeTarget "Pods-Tests" */;
+			buildPhases = (
+				03C3AE435AC9B8B02C7E5BDD /* Sources */,
+				118278630BEFE227789F1962 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59E71E21018919A139065616 /* PBXTargetDependency */,
+			);
+			name = "Pods-Tests";
+			productName = "Pods-Tests";
+			productReference = EB5391FCF0915F7AD9FEB5D2 /* libPods-Tests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		637635107425DCB8C6FB9F30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 0EF5BE5C77E20DE93D5DE1A0 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2C3B04479CD80611D848753E;
+			productRefGroup = A547BB745002F9E9D3236A2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2B935CB962E62C85E6F1486 /* GDIImageOperation */,
+				3481E1EE6174913B974F3C39 /* Pods-GDIImageOperation */,
+				EAC545FE4A910456C20A4347 /* Pods-GDIImageOperation-GDIImageOperation */,
+				FF494AD931E230DE6F02D3B8 /* Pods-Tests */,
+				6BB401E3A3B2BC9DDE5F0821 /* Pods-Tests-GDIImageOperation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A0811FBC7929FD95FCBE8C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03C3AE435AC9B8B02C7E5BDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43FF2DC6433F103BA91779DE /* Pods-Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2403DDF7EB220052D1346C28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77CE04781AB74834006A6A25 /* NSFileManager+GDISizeCalculation.m in Sources */,
+				77CE047A1AB74834006A6A25 /* UIImageView+GDIImageLoading.m in Sources */,
+				77CE04791AB74834006A6A25 /* UIApplication+GDINetworkActivity.m in Sources */,
+				77CE04771AB74834006A6A25 /* GDIOperation.m in Sources */,
+				77CE04761AB74834006A6A25 /* GDIImageOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5751A360C0156D4F44422327 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3294AD9CE618F71ED7EC8B08 /* Pods-Tests-GDIImageOperation-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78C2034CA3500897D2B59991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C85E1E5DDB56B392204AB6F /* Pods-GDIImageOperation-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADEFBF8FF9DB2D4FD814B703 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6139AE96652C3F89BA274984 /* Pods-GDIImageOperation-GDIImageOperation-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2223B0222E9004651C882213 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GDIImageOperation-GDIImageOperation";
+			target = EAC545FE4A910456C20A4347 /* Pods-GDIImageOperation-GDIImageOperation */;
+			targetProxy = 2DA0927B1713A56DD910681E /* PBXContainerItemProxy */;
+		};
+		5272790646EC87B88086EFB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GDIImageOperation;
+			target = D2B935CB962E62C85E6F1486 /* GDIImageOperation */;
+			targetProxy = D19600D1FD94F3A4D61124D6 /* PBXContainerItemProxy */;
+		};
+		59E71E21018919A139065616 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Tests-GDIImageOperation";
+			target = 6BB401E3A3B2BC9DDE5F0821 /* Pods-Tests-GDIImageOperation */;
+			targetProxy = 896261E5C3D71EE59591E15A /* PBXContainerItemProxy */;
+		};
+		C8E125C178285DCD93C3540F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GDIImageOperation;
+			target = D2B935CB962E62C85E6F1486 /* GDIImageOperation */;
+			targetProxy = B0789AD1E5B0625398166CE0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0CCA8147B78393B2A955916D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F157F35800263516D11F7189 /* Pods-Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1D13177DF6CC527120ABDAB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		3CE8AB758D2F9C56EDD89A01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F31EB050C1D894A9CC4D051 /* Pods-Tests-GDIImageOperation-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-GDIImageOperation/Pods-Tests-GDIImageOperation-prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D2A6529AEE32E78F1FF2765 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 951CC4D097A7177920A7AC0B /* Pods-GDIImageOperation.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5EE5156E551D4C19EC76C4BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		66EDF2E4E60B374CFB3A7493 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F31EB050C1D894A9CC4D051 /* Pods-Tests-GDIImageOperation-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-GDIImageOperation/Pods-Tests-GDIImageOperation-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		75643E8EAF2AAF328ADFDD45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		7AA573C4524577998DDBA2AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CFEDF56CF77BDF838CF8A84 /* Pods-Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		85F29D2662BB8BC6B995A6A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				STRIP_INSTALLED_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5F940D9FDB5F370FC47CA6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E063FB3DB035C39AC9252D75 /* Pods-GDIImageOperation-GDIImageOperation-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-GDIImageOperation-GDIImageOperation/Pods-GDIImageOperation-GDIImageOperation-prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A96E5F4ED7FF9B045BF6DB1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDAAE48998A3972B48D470BE /* Pods-GDIImageOperation.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E59AAF8451ACA5BE6C473B94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E063FB3DB035C39AC9252D75 /* Pods-GDIImageOperation-GDIImageOperation-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-GDIImageOperation-GDIImageOperation/Pods-GDIImageOperation-GDIImageOperation-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		08B62E703C1B4D798C5A51C1 /* Build configuration list for PBXNativeTarget "Pods-GDIImageOperation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2A6529AEE32E78F1FF2765 /* Debug */,
+				A96E5F4ED7FF9B045BF6DB1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EF5BE5C77E20DE93D5DE1A0 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EE5156E551D4C19EC76C4BF /* Debug */,
+				85F29D2662BB8BC6B995A6A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AEB6B75B141FACA95EBD60B /* Build configuration list for PBXNativeTarget "Pods-Tests-GDIImageOperation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66EDF2E4E60B374CFB3A7493 /* Debug */,
+				3CE8AB758D2F9C56EDD89A01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CEBD5FF480E4B09D78BA12B /* Build configuration list for PBXNativeTarget "GDIImageOperation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75643E8EAF2AAF328ADFDD45 /* Debug */,
+				1D13177DF6CC527120ABDAB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5996C098E64A9C635EBCEDD0 /* Build configuration list for PBXNativeTarget "Pods-GDIImageOperation-GDIImageOperation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E59AAF8451ACA5BE6C473B94 /* Debug */,
+				A5F940D9FDB5F370FC47CA6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E57AA094CA55012EF52EE14 /* Build configuration list for PBXNativeTarget "Pods-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AA573C4524577998DDBA2AF /* Debug */,
+				0CCA8147B78393B2A955916D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 637635107425DCB8C6FB9F30 /* Project object */;
+}
