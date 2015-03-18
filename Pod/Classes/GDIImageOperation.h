@@ -32,6 +32,8 @@ extern NSString * const GDIImageOperationCacheDirectorySizeCalculatedNotificatio
 + (NSInteger)numberOfFilesInCache;
 + (NSInteger)diskCacheSize;
 + (NSInteger)diskCacheSizeLimit;
++ (NSInteger)memoryCacheSizeLimit;
 + (void)setDiskCacheSizeLimit:(NSInteger)bytes;
++ (void)setMemoryCacheSizeLimit:(NSInteger)bytes;
 
 @end

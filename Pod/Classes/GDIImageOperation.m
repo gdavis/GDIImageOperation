@@ -19,6 +19,7 @@ static NSString * const GDIImageOperationSaveDirectory = @"GDIImageOperationCach
 static NSTimeInterval const GDIImageOperationExpirationDuration = 12.0 * 60.0 * 60.0;  // 12 hours
 static NSInteger const GDIImageOperationMemoryBytesCacheLimit = 1024 * 1024 * 100;     // 100 MiB = (1024 bytes in a kilobyte x 100) http://stackoverflow.com/questions/2365100/converting-bytes-to-megabytes
 
+static NSInteger _memoryCacheSizeLimit = GDIImageOperationMemoryBytesCacheLimit;
 static NSInteger _diskCacheSizeLimit = 0;
 static NSInteger _diskCacheSize = 0;
 static NSInteger _numberOfFilesInCache = 0;
@@ -36,7 +37,261 @@ static BOOL _isCalculatingCacheSize = NO;
 @implementation GDIImageOperation
 
 
-#pragma mark - Class Methods
+#pragma mark - Instance Methods
+
+
+- (instancetype)initWithImageURL:(NSURL *)imageURL
+{
+    self = [super init];
+    if (self) {
+        self.imageURL = imageURL;
+    }
+    return self;
+}
+
+
+- (BOOL)isAsynchronous
+{
+    return YES;
+}
+
+
+- (void)start
+{
+    if (self.isCancelled) {
+        self.executing = NO;
+        self.finished = YES;
+        return;
+    }
+    
+    self.executing = YES;
+    self.finished = NO;
+    
+    NSString *savePath = [[self class] savePathForURL:self.imageURL];
+    
+    if ([self hasImageExpiredOnDiskAtPath:savePath] == NO) {
+        
+        UIImage *cachedImage = [self imageFromCacheAtPath:savePath];
+        
+        if (self.isCancelled == NO) {
+            self.image = cachedImage;
+        }
+        
+        self.executing = NO;
+        self.finished = YES;
+    }
+    else {
+        [self requestImageFromNetwork];
+    }
+}
+
+
+- (UIImage *)imageFromCacheAtPath:(NSString *)savePath
+{
+    UIImage *cachedImage = [[self memoryCache] objectForKey:savePath];
+    UIImage *image;
+    
+    if (cachedImage != nil) {
+        image = cachedImage;
+    }
+    else {
+        image = [self imageFromDiskAtPath:savePath];
+        [self cacheImage:image key:savePath];
+    }
+    
+    return image;
+}
+
+
+- (void)cancel
+{
+    [super cancel];
+    
+    [self.dataTask cancel];
+}
+
+
+- (void)requestImageFromNetwork
+{
+    NSURLSession *session = self.URLSession;
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.imageURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (self == nil) {
+            return;
+        }
+        
+        if (self.isCancelled) {
+            self.executing = NO;
+            self.finished = YES;
+            return;
+        }
+        
+        if (error == nil) {
+            [self handleImageData:data];
+        }
+        else {
+            [self handleError:error];
+        }
+        
+        [self postNetworkRequestDidFinish];
+    }];
+    
+    [dataTask resume];
+    
+    self.dataTask = dataTask;
+    
+    [self postNetworkRequestDidStart];
+}
+
+
+- (void)handleError:(NSError *)error
+{
+    self.error = error;
+    
+    if (self.isCancelled == NO) {
+        
+        NSString *savePath = [[self class] savePathForURL:self.imageURL];
+        
+        if ([self hasImageOnDiskAtPath:savePath]) {
+            UIImage *cachedImage = [self imageFromCacheAtPath:savePath];
+            self.image = cachedImage;
+        }
+    }
+    
+    self.executing = NO;
+    self.finished = YES;
+}
+
+
+- (void)handleImageData:(NSData *)data
+{
+    if (data != nil && self.isCancelled == NO) {
+        
+        UIImage *image = [UIImage imageWithData:data];
+        
+        if (image != nil) {
+            
+            NSString *savePath = [[self class] savePathForURL:self.imageURL];
+            
+            if ([[self class] diskCacheSizeLimit] >= 0) {
+                [self saveImageDataToDisk:data path:savePath];
+            }
+            
+            if (self.isCancelled == NO) {
+                [self cacheImage:image key:savePath];
+                self.image = image;
+            }
+        }
+    }
+    
+    self.executing = NO;
+    self.finished = YES;
+}
+
+
+#pragma mark - Disk IO
+
+
+- (BOOL)hasImageOnDiskAtPath:(NSString *)savePath
+{
+    return [[NSFileManager defaultManager] fileExistsAtPath:savePath];
+}
+
+
+- (BOOL)hasImageExpiredOnDiskAtPath:(NSString *)savePath
+{
+    if ([self hasImageOnDiskAtPath:savePath]) {
+        
+        NSError *error;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSDictionary *attributes = [fileManager attributesOfItemAtPath:savePath error:&error];
+        NSDate *lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
+        NSDate *now = [NSDate date];
+        
+        if (lastModifiedDate != nil && [now timeIntervalSinceDate:lastModifiedDate] > GDIImageOperationExpirationDuration) {
+            return YES;
+        }
+        return NO;
+    }
+    return YES;
+}
+
+
+- (UIImage *)imageFromDiskAtPath:(NSString *)path
+{
+    return [UIImage imageWithContentsOfFile:path];
+}
+
+
+- (void)saveImageDataToDisk:(NSData *)data path:(NSString *)path
+{
+    NSString *directoryPath = [path stringByDeletingLastPathComponent];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL directoryPathExists = [fileManager fileExistsAtPath:directoryPath];
+    
+    if (directoryPathExists == NO) {
+        NSError *createDirectoriesError;
+        directoryPathExists = [fileManager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&createDirectoriesError];
+        if (directoryPathExists == NO) {
+            NSLog(@"[GDIImageOperation] Error creating image directory: %@", createDirectoriesError);
+        }
+    }
+    
+    if (directoryPathExists) {
+        NSDate *now = [NSDate date];
+        NSDictionary *attributes = @{ NSFileModificationDate: now };
+        [fileManager createFileAtPath:path contents:data attributes:attributes];
+    }
+}
+
+
+- (void)cacheImage:(UIImage *)image key:(NSString *)key
+{
+    NSUInteger imageCost = CGImageGetHeight(image.CGImage) * CGImageGetBytesPerRow(image.CGImage);
+    [[self memoryCache] setObject:image forKey:key cost:imageCost];
+}
+
+
+#pragma mark - Notifications
+
+
+- (void)postNetworkRequestDidStart
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:GDIImageOperationNetworkRequestDidStartNotification object:self];
+    });
+}
+
+- (void)postNetworkRequestDidFinish
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:GDIImageOperationNetworkRequestDidFinishNotification object:self];
+    });
+}
+
+
+#pragma mark - Lazy Properties
+
+
+- (NSURLSession *)URLSession
+{
+    if (_URLSession == nil) {
+        return [[self class] imageURLSession];
+    }
+    return _URLSession;
+}
+
+
+- (NSCache *)memoryCache
+{
+    if (_memoryCache == nil) {
+        return [[self class] imageCache];
+    }
+    return _memoryCache;
+}
+
+
+#pragma mark - Class "Properties"
 
 
 + (BOOL)isCalculatingDiskSize
@@ -75,6 +330,23 @@ static BOOL _isCalculatingCacheSize = NO;
     
     [self clearDiskCacheIfNecessary];
 }
+
+
++ (NSInteger)memoryCacheSizeLimit
+{
+    return _memoryCacheSizeLimit;
+}
+
+
++ (void)setMemoryCacheSizeLimit:(NSInteger)bytes
+{
+    _memoryCacheSizeLimit = bytes;
+    
+    [self imageCache].totalCostLimit = bytes;
+}
+
+
+#pragma mark - Class Methods
 
 
 + (void)clearDiskCacheIfNecessary
@@ -173,21 +445,6 @@ static BOOL _isCalculatingCacheSize = NO;
 }
 
 
-+ (NSString *)imageCacheDirectory
-{
-    static dispatch_once_t onceToken;
-    static NSString *documentsPath;
-    
-    dispatch_once(&onceToken, ^{
-        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        documentsPath = [searchPaths lastObject];
-        documentsPath = [documentsPath stringByAppendingPathComponent:GDIImageOperationSaveDirectory];
-    });
-    
-    return documentsPath;
-}
-
-
 + (NSString *)savePathForURL:(NSURL *)URL
 {
     NSString *savePath = [[self imageCacheDirectory] mutableCopy];
@@ -201,6 +458,21 @@ static BOOL _isCalculatingCacheSize = NO;
     }
     savePath = [savePath stringByAppendingPathComponent:URL.relativePath];
     return [savePath copy];
+}
+
+
++ (NSString *)imageCacheDirectory
+{
+    static dispatch_once_t onceToken;
+    static NSString *documentsPath;
+    
+    dispatch_once(&onceToken, ^{
+        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        documentsPath = [searchPaths lastObject];
+        documentsPath = [documentsPath stringByAppendingPathComponent:GDIImageOperationSaveDirectory];
+    });
+    
+    return documentsPath;
 }
 
 
@@ -226,255 +498,11 @@ static BOOL _isCalculatingCacheSize = NO;
     
     dispatch_once(&onceToken, ^{
         cache = [[NSCache alloc] init];
-        cache.totalCostLimit = GDIImageOperationMemoryBytesCacheLimit;
+        cache.totalCostLimit = [self memoryCacheSizeLimit];
     });
     
     return cache;
 }
 
-
-#pragma mark - Instance Methods
-
-
-- (instancetype)initWithImageURL:(NSURL *)imageURL
-{
-    self = [super init];
-    if (self) {
-        self.imageURL = imageURL;
-    }
-    return self;
-}
-
-
-- (BOOL)isAsynchronous
-{
-    return YES;
-}
-
-
-- (void)start
-{
-    if (self.isCancelled) {
-        self.executing = NO;
-        self.finished = YES;
-        return;
-    }
-    
-    self.executing = YES;
-    self.finished = NO;
-    
-    NSString *savePath = [[self class] savePathForURL:self.imageURL];
-    
-    if ([self hasImageExpiredOnDiskAtPath:savePath] == NO) {
-        
-        UIImage *cachedImage = [self imageFromCacheAtPath:savePath];
-        
-        if (self.isCancelled == NO) {
-            self.image = cachedImage;
-        }
-        
-        self.executing = NO;
-        self.finished = YES;
-    }
-    else {
-        [self requestImageFromNetwork];
-    }
-}
-
-
-- (UIImage *)imageFromCacheAtPath:(NSString *)savePath
-{
-    UIImage *cachedImage = [[self memoryCache] objectForKey:savePath];
-    UIImage *image;
-    
-    if (cachedImage != nil) {
-        image = cachedImage;
-    }
-    else {
-        image = [self imageFromDiskAtPath:savePath];
-        [self cacheImage:image key:savePath];
-    }
-    
-    return image;
-}
-
-
-- (void)cancel
-{
-    [super cancel];
-    
-    [self.dataTask cancel];
-}
-
-
-- (BOOL)hasImageOnDiskAtPath:(NSString *)savePath
-{
-    return [[NSFileManager defaultManager] fileExistsAtPath:savePath];
-}
-
-
-- (BOOL)hasImageExpiredOnDiskAtPath:(NSString *)savePath
-{
-    if ([self hasImageOnDiskAtPath:savePath]) {
-        
-        NSError *error;
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSDictionary *attributes = [fileManager attributesOfItemAtPath:savePath error:&error];
-        NSDate *lastModifiedDate = [attributes objectForKey:NSFileModificationDate];
-        NSDate *now = [NSDate date];
-        
-        if (lastModifiedDate != nil && [now timeIntervalSinceDate:lastModifiedDate] > GDIImageOperationExpirationDuration) {
-            return YES;
-        }
-        return NO;
-    }
-    return YES;
-}
-
-
-- (UIImage *)imageFromDiskAtPath:(NSString *)path
-{
-    return [UIImage imageWithContentsOfFile:path];
-}
-
-
-- (void)requestImageFromNetwork
-{
-    NSURLSession *session = self.URLSession;
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.imageURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        if (self == nil) {
-            return;
-        }
-        
-        if (self.isCancelled) {
-            self.executing = NO;
-            self.finished = YES;
-            return;
-        }
-        
-        if (error == nil) {
-            [self handleImageData:data];
-        }
-        else {
-            [self handleError:error];
-        }
-        
-        [self postNetworkRequestDidFinish];
-    }];
-    
-    [dataTask resume];
-    
-    self.dataTask = dataTask;
-    
-    [self postNetworkRequestDidStart];
-}
-
-
-- (void)postNetworkRequestDidStart
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:GDIImageOperationNetworkRequestDidStartNotification object:self];
-    });
-}
-
-- (void)postNetworkRequestDidFinish
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:GDIImageOperationNetworkRequestDidFinishNotification object:self];
-    });
-}
-
-
-- (void)handleError:(NSError *)error
-{
-    self.error = error;
-    
-    if (self.isCancelled == NO) {
-        
-        NSString *savePath = [[self class] savePathForURL:self.imageURL];
-        
-        if ([self hasImageOnDiskAtPath:savePath]) {
-            UIImage *cachedImage = [self imageFromCacheAtPath:savePath];
-            self.image = cachedImage;
-        }
-    }
-    
-    self.executing = NO;
-    self.finished = YES;
-}
-
-
-- (void)handleImageData:(NSData *)data
-{
-    if (data != nil && self.isCancelled == NO) {
-        
-        UIImage *image = [UIImage imageWithData:data];
-        
-        if (image != nil) {
-            
-            NSString *savePath = [[self class] savePathForURL:self.imageURL];
-            
-            if ([[self class] diskCacheSizeLimit] >= 0) {
-                [self saveImageDataToDisk:data path:savePath];
-            }
-            
-            if (self.isCancelled == NO) {
-                [self cacheImage:image key:savePath];
-                self.image = image;
-            }
-        }
-    }
-    
-    self.executing = NO;
-    self.finished = YES;
-}
-
-
-- (void)saveImageDataToDisk:(NSData *)data path:(NSString *)path
-{
-    NSString *directoryPath = [path stringByDeletingLastPathComponent];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL directoryPathExists = [fileManager fileExistsAtPath:directoryPath];
-    
-    if (directoryPathExists == NO) {
-        NSError *createDirectoriesError;
-        directoryPathExists = [fileManager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&createDirectoriesError];
-        if (directoryPathExists == NO) {
-            NSLog(@"[GDIImageOperation] Error creating image directory: %@", createDirectoriesError);
-        }
-    }
-    
-    if (directoryPathExists) {
-        NSDate *now = [NSDate date];
-        NSDictionary *attributes = @{ NSFileModificationDate: now };
-        [fileManager createFileAtPath:path contents:data attributes:attributes];
-    }
-}
-
-
-- (void)cacheImage:(UIImage *)image key:(NSString *)key
-{
-    NSUInteger imageCost = CGImageGetHeight(image.CGImage) * CGImageGetBytesPerRow(image.CGImage);
-    [[self memoryCache] setObject:image forKey:key cost:imageCost];
-}
-
-
-- (NSURLSession *)URLSession
-{
-    if (_URLSession == nil) {
-        return [[self class] imageURLSession];
-    }
-    return _URLSession;
-}
-
-
-- (NSCache *)memoryCache
-{
-    if (_memoryCache == nil) {
-        return [[self class] imageCache];
-    }
-    return _memoryCache;
-}
 
 @end
