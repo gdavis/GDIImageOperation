@@ -6,13 +6,15 @@
 //
 
 #import "GDIImageOperation.h"
-#import "UIApplication+GDINetworkActivity.h"
 #import "NSFileManager+GDISizeCalculation.h"
 
 
 #pragma mark - GDIImageOperation
 
-NSString * const GDIImageOperationCacheDirectorySizeCalculatedNotification = @"ImageOperationCacheDirectorySizeCalculatedNotification";
+NSString * const GDIImageOperationCacheDirectorySizeCalculatedNotification = @"GDIImageOperationCacheDirectorySizeCalculatedNotification";
+NSString * const GDIImageOperationNetworkRequestDidStartNotification = @"GDIImageOperationNetworkRequestDidStartNotification";
+NSString * const GDIImageOperationNetworkRequestDidFinishNotification = @"GDIImageOperationNetworkRequestDidFinishNotification";
+
 static NSString * const GDIImageOperationSaveDirectory = @"GDIImageOperationCache";
 static NSTimeInterval const GDIImageOperationExpirationDuration = 12.0 * 60.0 * 60.0;  // 12 hours
 static NSInteger const GDIImageOperationMemoryBytesCacheLimit = 1024 * 1024 * 100;     // 100 MiB = (1024 bytes in a kilobyte x 100) http://stackoverflow.com/questions/2365100/converting-bytes-to-megabytes
@@ -338,32 +340,43 @@ static BOOL _isCalculatingCacheSize = NO;
 
 - (void)requestImageFromNetwork
 {
-    __weak typeof(self) weakSelf = self;
-    
-    // TODO: refactor this outside of this class. use notifications to trigger increments
-    // so the application can route it through AFNetworking or whatever it uses to manage network activity
-    [UIApplication incrementNetworkActivityCount];
-    
     NSURLSession *session = self.URLSession;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.imageURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        [UIApplication decrementNetworkActivityCount];
-        
-        if (weakSelf == nil) {
+        if (self == nil) {
             return;
         }
         
         if (error == nil) {
-            [weakSelf handleImageData:data];
+            [self handleImageData:data];
         }
         else {
-            [weakSelf handleError:error];
+            [self handleError:error];
         }
+        
+        [self postNetworkRequestDidFinish];
     }];
     
     [dataTask resume];
     
     self.dataTask = dataTask;
+    
+    [self postNetworkRequestDidStart];
+}
+
+
+- (void)postNetworkRequestDidStart
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:GDIImageOperationNetworkRequestDidStartNotification object:self];
+    });
+}
+
+- (void)postNetworkRequestDidFinish
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:GDIImageOperationNetworkRequestDidFinishNotification object:self];
+    });
 }
 
 
