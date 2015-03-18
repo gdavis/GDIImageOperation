@@ -347,6 +347,12 @@ static BOOL _isCalculatingCacheSize = NO;
             return;
         }
         
+        if (self.isCancelled) {
+            self.executing = NO;
+            self.finished = YES;
+            return;
+        }
+        
         if (error == nil) {
             [self handleImageData:data];
         }
@@ -401,7 +407,7 @@ static BOOL _isCalculatingCacheSize = NO;
 
 - (void)handleImageData:(NSData *)data
 {
-    if (data != nil) {
+    if (data != nil && self.isCancelled == NO) {
         
         UIImage *image = [UIImage imageWithData:data];
         
@@ -413,9 +419,8 @@ static BOOL _isCalculatingCacheSize = NO;
                 [self saveImageDataToDisk:data path:savePath];
             }
             
-            [self cacheImage:image key:savePath];
-            
             if (self.isCancelled == NO) {
+                [self cacheImage:image key:savePath];
                 self.image = image;
             }
         }
