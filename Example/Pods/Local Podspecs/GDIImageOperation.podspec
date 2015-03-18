@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "GDIImageOperation"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "GDIImageOperation is an NSOperation subclass that simplifies image loading."
   s.description      = <<-DESC
                        GDIImageOperation is an NSOperation subclass that simplifies image loading.
@@ -17,11 +17,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'GDIImageOperation' => ['Pod/Assets/*.png']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  # s.dependency 'Gravity', '~> 1.1.3'
 end
