@@ -252,7 +252,14 @@ static BOOL _isCalculatingCacheSize = NO;
 
 - (void)start
 {
+    if (self.isCancelled) {
+        self.executing = NO;
+        self.finished = YES;
+        return;
+    }
+    
     self.executing = YES;
+    self.finished = NO;
     
     NSString *savePath = [[self class] savePathForURL:self.imageURL];
     
@@ -333,6 +340,8 @@ static BOOL _isCalculatingCacheSize = NO;
 {
     __weak typeof(self) weakSelf = self;
     
+    // TODO: refactor this outside of this class. use notifications to trigger increments
+    // so the application can route it through AFNetworking or whatever it uses to manage network activity
     [UIApplication incrementNetworkActivityCount];
     
     NSURLSession *session = self.URLSession;
@@ -387,7 +396,7 @@ static BOOL _isCalculatingCacheSize = NO;
             
             NSString *savePath = [[self class] savePathForURL:self.imageURL];
             
-            if ([[self class] diskCacheSizeLimit] > 0) {
+            if ([[self class] diskCacheSizeLimit] >= 0) {
                 [self saveImageDataToDisk:data path:savePath];
             }
             
@@ -414,7 +423,7 @@ static BOOL _isCalculatingCacheSize = NO;
         NSError *createDirectoriesError;
         directoryPathExists = [fileManager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&createDirectoriesError];
         if (directoryPathExists == NO) {
-            NSLog(@"%@", createDirectoriesError);
+            NSLog(@"[GDIImageOperation] Error creating image directory: %@", createDirectoriesError);
         }
     }
     
