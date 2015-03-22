@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "GDIImageOperation"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "GDIImageOperation is an NSOperation subclass for modern, fast image loading."
   s.description      = <<-DESC
                        GDIImageOperation is an NSOperation subclass that makes use of NSURLSession for requests, NSCache
@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'GDIImageOperation/**/*'
   s.frameworks = 'UIKit'
 end
