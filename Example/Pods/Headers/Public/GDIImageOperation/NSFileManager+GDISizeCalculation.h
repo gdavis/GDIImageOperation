@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/NSFileManager+GDISizeCalculation.h
+../../../../../GDIImageOperation/NSFileManager+GDISizeCalculation.h

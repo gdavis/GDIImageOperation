@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/GDIImageOperation.h
+../../../../../GDIImageOperation/GDIImageOperation.h

@@ -11,6 +11,8 @@
 #import "GDIOperation.h"
 
 extern NSString * const GDIImageOperationCacheDirectorySizeCalculatedNotification;
+extern NSString * const GDIImageOperationNetworkRequestDidStartNotification;
+extern NSString * const GDIImageOperationNetworkRequestDidFinishNotification;
 
 @interface GDIImageOperation : GDIOperation
 

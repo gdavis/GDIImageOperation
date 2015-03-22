@@ -1,10 +1,17 @@
 Pod::Spec.new do |s|
   s.name             = "GDIImageOperation"
-  s.version          = "0.1.1"
-  s.summary          = "GDIImageOperation is an NSOperation subclass that simplifies image loading."
+  s.version          = "0.1.2"
+  s.summary          = "GDIImageOperation is an NSOperation subclass for modern, fast image loading."
   s.description      = <<-DESC
-                       GDIImageOperation is an NSOperation subclass that simplifies image loading.
-                       More information coming soonish.
+                       GDIImageOperation is an NSOperation subclass that makes use of NSURLSession for requests, NSCache
+                       for in memory caching, and also caches images to disk.
+                       
+                       This project is similar to SDWebImage but is lighter weight and the GDIImageOperation can be 
+                       used independently for custom download tasks. GDIImageOperation also uses iOS7+ APIs and supports
+                       using custom NSURLSession and custom configuration for caching rules.
+                       
+                       This project also includes a category on UIImageView to asynchronous loading images from cache,
+                       or network, when necessary. 
                        DESC
   s.homepage         = "https://github.com/gdavis/GDIImageOperation"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
@@ -16,6 +23,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'GDIImageOperation/*'
   s.frameworks = 'UIKit'
 end
