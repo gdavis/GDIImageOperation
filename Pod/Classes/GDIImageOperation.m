@@ -96,7 +96,9 @@ static BOOL _isCalculatingCacheSize = NO;
     }
     else {
         image = [self imageFromDiskAtPath:savePath];
-        [self cacheImage:image key:savePath];
+        if (image != nil) {
+            [self cacheImage:image key:savePath];
+        }
     }
     
     return image;
