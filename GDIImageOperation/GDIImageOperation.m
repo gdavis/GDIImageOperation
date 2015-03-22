@@ -118,13 +118,10 @@ static BOOL _isCalculatingCacheSize = NO;
     NSURLSession *session = self.URLSession;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.imageURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (self == nil) {
-            return;
-        }
-        
         if (self.isCancelled) {
             self.executing = NO;
             self.finished = YES;
+            [self postNetworkRequestDidFinish];
             return;
         }
         
