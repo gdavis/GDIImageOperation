@@ -141,6 +141,13 @@
         imageOperation.URLSession = session;
     }
     
+    NSString *savePath = [GDIImageOperation savePathForURL:URL];
+    UIImage *cachedImage = [[GDIImageOperation imageCache] objectForKey:savePath];
+    
+    if (cachedImage != nil) {
+        self.image = cachedImage;
+    }
+    
     __weak typeof(self) weakSelf = self;
     __weak typeof(imageOperation) weakOperation = imageOperation;
     
