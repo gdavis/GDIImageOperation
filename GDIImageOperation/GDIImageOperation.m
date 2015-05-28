@@ -115,24 +115,29 @@ static BOOL _isCalculatingCacheSize = NO;
 
 - (void)requestImageFromNetwork
 {
+    __weak typeof(self) weakSelf = self;
     NSURLSession *session = self.URLSession;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:self.imageURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (self.isCancelled) {
-            self.executing = NO;
-            self.finished = YES;
-            [self postNetworkRequestDidFinish];
+        if (weakSelf == nil) {
+            return;
+        }
+        
+        if (weakSelf.isCancelled) {
+            weakSelf.executing = NO;
+            weakSelf.finished = YES;
+            [weakSelf postNetworkRequestDidFinish];
             return;
         }
         
         if (error == nil) {
-            [self handleImageData:data];
+            [weakSelf handleImageData:data];
         }
         else {
-            [self handleError:error];
+            [weakSelf handleError:error];
         }
         
-        [self postNetworkRequestDidFinish];
+        [weakSelf postNetworkRequestDidFinish];
     }];
     
     [dataTask resume];
