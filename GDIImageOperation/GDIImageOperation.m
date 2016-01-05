@@ -375,6 +375,10 @@ static BOOL _isCalculatingCacheSize = NO;
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *savePath = [self savePathForURL:[NSURL new]];
         NSURL *saveURL = [NSURL URLWithString:savePath];
+        if (saveURL == nil) {
+            return;
+        }
+        
         NSArray *keys = @[NSURLNameKey, NSURLIsDirectoryKey, NSFileModificationDate, NSFileSize];
         NSDirectoryEnumerationOptions options = (NSDirectoryEnumerationSkipsHiddenFiles);
         NSDirectoryEnumerator *dirEnumerator = [fileManager enumeratorAtURL:saveURL
@@ -465,7 +469,18 @@ static BOOL _isCalculatingCacheSize = NO;
 }
 
 
+static NSString *cacheDirectoryPath;
+
 + (NSString *)imageCacheDirectory
+{
+    if (cacheDirectoryPath != nil && cacheDirectoryPath.length > 0) {
+        return cacheDirectoryPath;
+    }
+    
+    return [self defaultImageCacheDirectory];
+}
+
++ (NSString *)defaultImageCacheDirectory
 {
     static dispatch_once_t onceToken;
     static NSString *documentsPath;
@@ -477,6 +492,28 @@ static BOOL _isCalculatingCacheSize = NO;
     });
     
     return documentsPath;
+}
+
++ (void)setImageCacheDirectoryWithPath:(NSString *)directoryPath
+{
+    if (directoryPath == nil) {
+        cacheDirectoryPath = nil;
+        return;
+    }
+    
+    // create the directory if needed and add a skip backup attribute.
+    if ([[NSFileManager defaultManager] fileExistsAtPath:directoryPath] == NO) {
+        NSError *error = nil;
+        if ([[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+            cacheDirectoryPath = directoryPath;
+        }
+        else {
+            NSAssert(error == nil, @"Could not create image cache directory. Encountered error: %@", error);
+        }
+    }
+    else {
+        cacheDirectoryPath = directoryPath;
+    }
 }
 
 

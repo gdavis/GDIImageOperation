@@ -27,6 +27,8 @@ extern NSString * const GDIImageOperationNetworkRequestDidFinishNotification;
 + (NSString *)savePathForURL:(NSURL *)URL;
 + (BOOL)clearCacheForImageURL:(NSURL *)imageURL;
 + (NSCache *)imageCache;
++ (NSString *)imageCacheDirectory;
++ (void)setImageCacheDirectoryWithPath:(NSString *)directoryPath;
 
 + (BOOL)isCalculatingDiskSize;
 + (BOOL)hasCalculatedDiskSize;
