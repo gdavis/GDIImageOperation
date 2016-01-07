@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Grant Davis" => "grant.davis@gmail.com" }
   s.source           = { :git => "https://github.com/gdavis/GDIImageOperation.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/ghunterdavis'
+  s.social_media_url = 'https://twitter.com/gravitybytes'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
